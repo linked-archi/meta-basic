@@ -18,12 +18,12 @@
     cc:license
                         "This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License."@en ;
     dc:creator          "Kalin Maldzhanski"^^xsd:string ;
-    dc:description      "Linked.Archi Minimal Modeling Ontology."@en ;
+    dc:description      "Linked.Archi Minimal Metamodel."@en ;
     dc:issued           "2019-03-17"^^xsd:date ;
     dc:modified         "2019-10-17"^^xsd:date ;
     dc:publisher        <https://linked.archi> ;
     dc:publisher        "Linked.Archi"@en ;
-    dc:title            "Linked.Archi Minimal Modeling Ontology"@en ;
+    dc:title            "Linked.Archi Minimal Metamodel"@en ;
     rdfs:comment        "Version 0.1.0: Initial"@en ;
     owl:imports         <https://meta.linked.archi/core.ttl> ;
     owl:versionInfo     0.1 ;
@@ -34,7 +34,6 @@ arch:Element
     rdfs:label "Element"
 .
 
-s
 # owl:ObjectProperty can be ommited in the definition as RelType is a Property. it is there to help tools ingest easily
 #        the model without any inference.
 bas:relationship
