@@ -13,40 +13,51 @@
 @prefix bas:     <https://meta.linked.archi/basic#> .
 
 <https://meta.linked.archi/basic>
-    rdf:type            owl:Ontology ;
-    cc:license          <http://creativecommons.org/licenses/by-sa/3.0/> ;
-    cc:license
-                        "This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License."@en ;
-    dc:creator          "Kalin Maldzhanski"^^xsd:string ;
-    dc:description      "Linked.Archi Minimal Metamodel."@en ;
-    dc:issued           "2019-03-17"^^xsd:date ;
-    dc:modified         "2019-10-17"^^xsd:date ;
-    dc:publisher        <https://linked.archi> ;
-    dc:publisher        "Linked.Archi"@en ;
-    dc:title            "Linked.Archi Minimal Metamodel"@en ;
-    rdfs:comment        "Version 0.1.0: Initial"@en ;
-    owl:imports         <https://meta.linked.archi/core.ttl> ;
-    owl:versionInfo     0.1 ;
+    rdf:type        owl:Ontology ;
+    cc:license      <http://creativecommons.org/licenses/by-sa/3.0/> ;
+    cc:license      "This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License."@en ;
+    dc:creator      "Kalin Maldzhanski"^^xsd:string ;
+    dc:description  "Minimal Metamodel."@en ;
+    dc:issued       "2019-03-17"^^xsd:date ;
+    dc:modified     "2019-10-17"^^xsd:date ;
+    dc:publisher    <https://linked.archi> ;
+    dc:publisher    "Linked.Archi"@en ;
+    dc:title        "Minimal Metamodel"@en ;
+    rdfs:comment    "Version 0.1.0: Initial"@en ;
+    owl:imports     <https://meta.linked.archi/core.ttl> ;
+    owl:versionInfo 0.1 ;
 .
 
-arch:Element
-    a          owl:Class ;
-    rdfs:label "Element"
-.
+# well this is not the most minimal metamodel, as the most minimal is already defined in the core ontology, however,
+# it is as simple as possible and at the same time enough to enable examples of appling meaningful simple restrictions and inference rules
 
-# owl:ObjectProperty can be ommited in the definition as RelType is a Property. it is there to help tools ingest easily
-#        the model without any inference.
-bas:relationship
-    a                    owl:ObjectProperty, bas:BasicRelType ;
-    rdfs:label           "relationship"@en ;
-    skos:definition "The most abstract relationship"@en ;
-.
-
-# optional for the most simple model
-bas:BasicRelType
+bas:Node
     a               owl:Class ;
-    rdfs:subClassOf arch:RelType ;
-    rdfs:label      "BasicRelType" ;
-    skos:definition "The most abstract relationship type"@en ;
+    rdfs:subClassOf arch:Element ;
+    rdfs:label      "Node"@en ;
+    rdfs:comment    "a simple node that cannot contain/own/aggregate other nodes"@en ;
+.
+
+bas:GroupNode
+    a               owl:Class ;
+    rdfs:subClassOf arch:Element ;
+    rdfs:label      "GroupNode"@en ;
+    rdfs:comment    "a group node that can aggregate other Nodes"@en ;
+.
+
+bas:Association
+    a               owl:Class ;
+    rdfs:subClassOf arch:Relationship ;
+    rdfs:label      "Association"@en ;
+    rdfs:comment
+                    "Abstract relationship type. Relates an element to another element with which there is an associative semantic relationship."@en ;
+.
+
+bas:Aggregation
+    a               owl:Class ;
+    rdfs:subClassOf arch:Relationship ;
+    rdfs:label      "Aggregation"@en ;
+    rdfs:comment
+                    "Relationship between a Node and a composite Node representing that an element combines one or more other elements"@en ;
 .
 
